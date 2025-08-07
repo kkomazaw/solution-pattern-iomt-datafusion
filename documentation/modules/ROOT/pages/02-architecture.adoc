@@ -30,7 +30,21 @@ Technical description including all or some of the following: architecture ir ed
 
 === Using images 
 
-image::red_hat_open-hybrid-cloud.png[width=30%]
+image::solution-architecture-overview.png[width=100%]
+
+image::component-diagram-overview.png[width=100%]
+
+image::component-diagram-private-cloud.png[width=100%]
+
+image::component-diagram-local-cloud.png[width=100%]
+
+image::component-diagram-fog.png[width=100%]
+
+image::component-diagram-resiliency.png[width=100%]
+
+image::appendix-datamesh-level0-3.png[width=100%]
+
+image::appendix-datamesh-level4-5.png[width=100%]
 
 {empty}
 

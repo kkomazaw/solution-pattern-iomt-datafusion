@@ -1,6 +1,4 @@
 * xref:index.adoc[{counter:module}. Home page]
-** xref:index.adoc#use-cases[{module}.{counter:submodule1} Use cases]
-** xref:index.adoc#_the_story_behind_this_solution_pattern[{module}.{counter:submodule1} The story behind this solution pattern]
 ** xref:index#_the_solution[{module}.{counter:submodule1} The solution]
 
 * xref:02-architecture.adoc[{counter:module}. Architecture]

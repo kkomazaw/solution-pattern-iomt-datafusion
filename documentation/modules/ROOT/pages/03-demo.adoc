@@ -1,4 +1,4 @@
-= Solution Pattern: Name Template
+= Solution Pattern: Internet of Military Things with Data Fusion
 :sectnums:
 :sectlinks:
 :doctype: book
@@ -8,6 +8,12 @@
 == Demonstration
 
 Include here content related to potential existing demos: blogs, articles, recorded videos, walkthrough guides, tutorials.
+
+image::solution-pattern-concept.png[width=100%]
+
+image::demo-architecture-concept.png[width=100%]
+
+image::demo-architecture-technical.png[width=100%]
 
 [#demo-video]
 === Watch a demonstration
