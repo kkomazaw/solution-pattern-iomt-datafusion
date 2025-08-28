@@ -7,22 +7,117 @@
 
 == Demonstration
 
-Include here content related to potential existing demos: blogs, articles, recorded videos, walkthrough guides, tutorials.
+This demo illustrates how the Edge–Fog–Core ecosystem, connected by a Data Mesh, enables real-time detection, mission coordination, and continuous improvement of AI capabilities. It demonstrates a solution pattern where autonomous frontline operations and centralized decision-making are tightly integrated.
 
 image::solution-pattern-concept.png[width=100%]
 
+=== Demo Flow (Overview)
+
+. Detection at the Edge (Squad level)
+
+* A drone-mounted camera captures images, which are automatically labeled by AI.
+
+* A frontline AI robot generates autonomous action plans from natural language mission inputs.
+
+* Based on sensor and drone information, a “suspicious object found” event is created.
+
+. Sharing at the Fog Layer (Division/Battalion level)
+
+* The Data Mesh asynchronously synchronizes events from the Edge, providing real-time updates.
+
+* The Mission Management GUI updates maps with the coordinates and images of suspicious objects.
+
+* Required AI/ML models and applications (artifacts) are stored and retrieved from the Core as needed.
+
+. Integration at the Core (Headquarter level)
+
+* The Data Mesh synchronizes operational data across Fog and Core.
+
+* AI/ML models are developed, refined, quantized, and verified by data scientists.
+
+* The Embedded Application Development Environment creates mission functions, packaged as artifacts.
+
+* Artifacts undergo security checks and are then distributed to Fog and Edge environments.
+
+. Execution and Continuous Loop
+
+* The suspicious object event is shared across all levels, prompting frontline robots and soldiers to take immediate action.
+
+* Updated AI/ML models and applications are continuously redeployed from Core to Fog and Edge, improving accuracy and responsiveness in subsequent missions.
+
 image::demo-architecture-concept.png[width=100%]
 
+=== Technical Demo Flow (Detailed)
+
+. Detection and Mission Execution at the Edge (Squad level)
+
+* Reconnaissance drone images are processed locally on Red Hat Device Edge platforms.
+
+* OpenAI CLIP + OpenCV handle object detection and labeling when suspicious objects appear.
+
+* A suspicious object found event is generated and sent upstream.
+
+* In parallel, the frontline AI robot interprets natural language mission inputs via Llama 3 + Ollama + Open WebUI.
+
+* The robot autonomously generates action plans and executes them, using GPU-powered onboard AI and sensor data.
+
+. Data Aggregation and Coordination at the Fog Layer (Division/Battalion)
+
+* Events from multiple squads are streamed into Kafka-based Data Mesh.
+
+* The Mission Management GUI updates coordinates and images of suspicious objects on a tactical map in near real time.
+
+* The Artifact Management system (container registry + Git + YAML configurations) ensures that the latest mission applications and AI models are available for deployment to Edge nodes.
+
+* This layer serves as a bridge: synchronizing asynchronous data flows between multiple squads (Edges) and the Core HQ.
+
+. Development, Model Lifecycle, and Security at the Core (Headquarter)
+
+* The Kafka Data Mesh integrates operational data from Fog, enabling global situational awareness.
+
+* Artifact Management includes advanced DevSecOps functions:
+
+** Git-based code management
+
+** Container registry for packaging applications
+
+** SBOM (Software Bill of Materials) management
+
+** Vulnerability assessment, CVE verification, and signed builds
+
+* Embedded Application Development Environment allows developers to build, test, and push new robot mission functions securely to the Fog/Edge.
+
+* AI/ML model development happens on Red Hat OpenShift with Jupyter Notebook, covering:
+
+** Data formatting from field inputs
+
+** Model retraining using new Edge/Fog data
+
+** Model quantization for efficiency
+
+** Model verification before redeployment
+
+. Execution Loop and Continuous Improvement
+
+* Once new models or mission applications are built, they are pushed through the artifact management pipeline and synchronized via the Data Mesh back to Fog and Edge.
+
+* This enables squads to run the latest optimized AI models for detection, labeling, and mission planning.
+
+* Field events (like suspicious object detection) continuously feed data back to Core, creating a closed learning and improvement cycle.
+
+. Summary (Technical View)
+
+This technical architecture demonstrates how:
+
+* Edge provides autonomous operation with local AI models (CLIP, Llama 3, etc.) on Red Hat Device Edge.
+
+* Fog acts as a coordination and synchronization hub via Kafka Data Mesh, with tactical visualization and artifact distribution.
+
+* Core provides centralized AI/ML development, DevSecOps-based artifact management, and secure deployment via Red Hat OpenShift.
+
+Together, the system forms a resilient, secure, and continuously improving IoMT + Data Fusion pipeline for real-time military operations.
+
 image::demo-architecture-technical.png[width=100%]
-
-[#demo-video]
-=== Watch a demonstration
-
-In this video you can see xpto:
-
-video::3yULVMdqJ98[youtube, width=800, height=480]
-
-Next, you can learn how to walkthrough this demo.
 
 == Run the demonstration
 

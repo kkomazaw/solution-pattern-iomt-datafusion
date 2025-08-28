@@ -7,8 +7,6 @@
 
 Introduction for the architecture of this solution pattern.
 
-== Common Challenges 
-
 [#tech_stack]
 == Technology Stack
 
@@ -28,11 +26,45 @@ Introduction for the architecture of this solution pattern.
 
 Technical description including all or some of the following: architecture ir ed diagrams. In-depth details of the decisions made and solutions used. Description of each service and what it is used for. Description of any integration.
 
-=== Using images 
+=== Solution diagrams 
 
 image::solution-architecture-overview.png[width=100%]
 
+The diagram shows how data flows from the edge battlefield sensors through the Fog and local clouds, where transfer learning and Red Hat AI provide adaptive intelligence. This refined intelligence is securely integrated with headquarters (private cloud) and optionally connected to public cloud services. The red area highlights the core scope of the proposal, focusing on AI adaptation and secure deployment in the Fog and local cloud layers.
+
+==== Explanation of the Figure
+
+. Edge (Battlefront)
+
+* Sensors and operating systems at the edge generate real-time incoming data.
+
+* AI models deployed here enable frontline analysis and rapid situational awareness.
+
+. Fog / Local Cloud (Battlefront & Garrison/Base)
+
+* The middle layer manages transfer learning and adapts AI models based on field data.
+
+* Feedback loops send training data from the edge into this layer to refine models.
+
+* Updated models are then redeployed back to the edge.
+
+* This red-highlighted section (Red Hat AI) indicates the scope of the proposed solution, focusing on model utilization, transfer learning, and secure deployment.
+
+. Private Cloud (Headquarters)
+
+* Handles confidential information, in-depth analysis, and model development.
+
+* Provides validated AI models that are pushed back into the Fog/Edge layers.
+
+. Public Cloud (Open domain)
+
+* Used for broader information gathering, analysis, and public services.
+
+* Supports multi-domain data sharing while remaining air-gapped from secure environments.
+
 image::component-diagram-overview.png[width=100%]
+
+
 
 image::component-diagram-private-cloud.png[width=100%]
 
@@ -48,71 +80,3 @@ image::appendix-datamesh-level4-5.png[width=100%]
 
 {empty}
 
-=== Embedding HTML
-
-++++
-  <br>
-  <h3> Embed HTML by surrounding it with with four +s before and after. </h3>
-  <span>View the ascii doc to learn more</span>
-  <br> 
-++++
-
-
-=== Different decorators
-
-[TIP]
-====
-This is a Tip
-====
-
-[NOTE]
-====
-This is a NOTE
-====
-
-[WARNING]
-====
-This is a WARNING
-====
-
-[IMPORTANT]
-====
-This is IMPORTANT
-====
-
-
-=== Creating  tables
- 
-[cols="1a,1a,1a"]
-|===
-| *Column A*  | Column *A* | _Column C_
-|
-* Lorem Ipsum
-* Lorem Ipsum
-
-|
-* Lorem Ipsum
-* Lorem Ipsum
-
-|
-* Lorem Ipsum
-* Lorem Ipsum
-|===
-
-
-
-=== Content that can be copied
-
-Click below to copy the content
-[.console-input]
-[source,shell script]
-----
-oc version #openshift cli client
-oc login --token=<token> --server=<server>
-----
-
-
-[#more_tech]
-== About the Technology Stack
-
-If you want to include more details about the tech stack you used, this is the place.
