@@ -64,13 +64,183 @@ The diagram shows how data flows from the edge battlefield sensors through the F
 
 image::component-diagram-overview.png[width=100%]
 
+This component diagram (draft) shows the technical breakdown of the IoMT with Data Fusion solution, spanning from Edge → Fog → Local Cloud → Private Cloud → Public Cloud.
 
+Overview of the Diagram
+
+. Edge (Battlefront)
+
+* Sensors and operating systems collect raw data.
+
+* Data is transmitted to Fog for processing.
+
+. Fog (Battlefront)
+
+* Hosts Agentic AI applications (e.g., LLM- and ML-based transfer learning, vector databases).
+
+* Applications run on Red Hat AI frameworks and are managed through the Application Management Platform.
+
+* Data Hub and container platforms (OpenShift/Device Edge) provide infrastructure for data linkage and application deployment.
+
+. Local Cloud (Garrison/Base)
+
+* Supports DevSecOps pipelines and AI/ML pipelines for transfer learning.
+
+* Stores training data, transfer models, and reinforcement models in object storage.
+
+*  Provides secure container registries for packaging and distributing AI apps and models.
+
+. Private Cloud (Headquarters)
+
+* Extends DevSecOps for Agentic AI applications.
+
+* Manages libraries and application code for reinforcement learning.
+
+* AI training platforms ensure secure refinement before redeployment to Fog/Edge.
+
+. Public Cloud (Open domain)
+
+* Focuses on information gathering, analysis, and model development.
+
+* Connects to public services while remaining separated by an air gap.
+
+Emphasis on Red Areas (Red Hat Components)
+
+The red-highlighted components represent the core Red Hat products that provide the foundation for the solution:
+
+. Container Platforms (OpenShift/Device Edge)
+
+* Ensure a consistent, scalable environment for running AI workloads across Edge, Fog, and Cloud.
+
+* Enable seamless deployment and lifecycle management of AI applications.
+
+. Data Hub & Data Linkage Modules
+
+* Facilitate modular, publish/subscribe-based data exchange.
+
+* Support integration between sensors, AI models, and higher-level clouds.
+
+. Application & AI App Framework Management
+
+* Allow developers to deploy, monitor, and update AI apps at the Fog and Cloud levels.
+
+* Provide reliability for running agentic AI applications in mission-critical scenarios.
+
+. DevSecOps Platforms
+
+* Embed security-by-design practices, ensuring that AI apps and pipelines undergo code management, vulnerability scanning, and compliance validation.
+
+* Guarantee that only trusted apps/models are deployed into operational environments.
+
+Summary
+
+This component architecture combines user-developed AI/ML pipelines (green) with Red Hat’s infrastructure and security backbone (red). Red Hat products form the operational foundation—from containerized platforms to DevSecOps pipelines and application/data management—enabling secure, scalable, and continuously updated AI deployment across battlefield environments.
 
 image::component-diagram-private-cloud.png[width=100%]
 
+This diagram shows the component architecture for the Private Cloud (Closed environment), where reinforcement learning and Agentic AI (autonomous AI) applications are developed, tested, and deployed securely before being shared across multiple domains.
+
+Key Components and Flow
+
+. Core Infrastructure (Red Hat foundation, in red):
+
+* Container Platform (OpenShift): Provides the execution environment for all applications and pipelines.
+
+* Data Hub (Apache Kafka): Handles large-scale data ingestion and distribution.
+
+* Data Linkage & Processing (Apache Camel, Mod/Pub): Ensures smooth integration and publishing of data streams.
+
+* DevSecOps Platform (OpenShift Pipelines & GitOps): Automates secure code management, builds, tests, and deployment cycles.
+
+. Application and Model Development (User-driven, in green):
+
+* Code & Library Management: Source code (Python/Java) and application libraries are versioned and controlled.
+
+* DevSecOps Pipeline for Development: Manages the full CI/CD process from build → test → deploy.
+
+* AI/ML Pipeline for Development: Handles data preparation, model creation, verification, and deployment.
+
+* AI Training Platform (OpenShift AI with Kubeflow & Jupyter): Enables interactive model development and experimentation.
+
+. QA and Runtime Environment:
+
+* QA Environment: Hosts Agentic AI containers for testing reinforcement learning (LLM/ML) and retrieval-augmented generation (RAG).
+
+* Object Storage (OpenShift Data Foundation): Stores reinforcement models, base models, RAG data, and training data.
+
+. Air Gap and Sharing:
+
+* Validated models can be securely shared across multiple domains by passing through the air gap into wider environments.
+
+Summary
+
+In the Private Cloud, this solution provides a secure, closed-loop environment for:
+
+* Developing and validating Agentic AI applications.
+
+* Training and reinforcing models with controlled data pipelines.
+
+* Ensuring that all AI/ML assets are securely built, tested, and deployed under DevSecOps practices.
+
+* Preparing models for multi-domain sharing while maintaining strict isolation via the air gap.
+
+
 image::component-diagram-local-cloud.png[width=100%]
 
+This diagram shows the component architecture for the Local Cloud (Closed environment), where transfer learning models are created, evaluated, and packaged for secure distribution to the Fog layer (battlefront).
+
+Key Components and Flow
+
+. Core Infrastructure (Red Hat foundation, in red):
+
+* Container Platform (OpenShift): Provides execution environment for AI/ML pipelines and application containers.
+
+* Data Hub (Apache Kafka): Manages large-scale data ingestion and streaming.
+
+* Processing & Publish (Apache Camel): Handles modification, integration, and publishing of data flows.
+
+* DevSecOps Platform (OpenShift Pipelines & GitOps): Automates secure workflows for container building, deployment, and lifecycle management.
+
+. Application and Model Development (User-driven, in green):
+
+* Code & Configuration Management: Git server stores source code and Infrastructure-as-Code definitions.
+
+* DevSecOps Pipeline for Fog: Builds and deploys Agentic AI containers and updated models for Fog use.
+
+* AI/ML Pipeline for Transfer Learning: Prepares data, applies transfer learning (LLM/ML), updates RAG (Retrieval-Augmented Generation), verifies models, and deploys them.
+
+* AI Training Platform (OpenShift AI with Kubeflow & Jupyter): Supports iterative model training and experimentation.
+
+. QA and Runtime Environment:
+
+* QA Environment: Hosts containers for testing updated transfer learning models (LLM, ML) and modified RAG modules.
+
+* Container Registry (Red Hat Quay): Stores Agentic AI containers, transfer learning models, and RAG modules for secure deployment.
+
+* Object Storage (OpenShift Data Foundation): Stores transfer models, RAG data, and links to reinforcement models from the Private Cloud.
+
+. Integration with Private Cloud:
+
+* Models and data are exchanged securely via DII (Data Interoperability Interface) with the Private Cloud.
+
+* This ensures that updated transfer models from Local Cloud can be aligned with reinforcement models from Private Cloud before being distributed to the Fog.
+
+Summary
+
+In the Local Cloud, the solution enables:
+
+* Transfer learning model development and testing in a controlled environment.
+
+* Containerization of updated AI models and RAG modules, allowing independent updates at different frequencies.
+
+* Secure integration with the Private Cloud, ensuring coherence between transfer learning (Local Cloud) and reinforcement learning (Private Cloud).
+
+* Distribution readiness for the Fog layer, ensuring the battlefield receives updated, validated, and containerized AI intelligence.
+
+
 image::component-diagram-fog.png[width=100%]
+
+
 
 image::component-diagram-resiliency.png[width=100%]
 
